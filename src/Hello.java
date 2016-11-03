@@ -16,6 +16,7 @@ public class Hello {
 		if(in >= 10){
 			System.out.println("Hello world!");		
 			System.out.println("Hey Michael!"); //Added Michael Support
+			System.out.println("Hey Nick!"); //Added Nick Support
 		}
 		
 		sc.close();
