@@ -1,4 +1,5 @@
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Hello {
 
@@ -8,6 +9,14 @@ public class Hello {
 		System.out.println("Hey there!");
 		
 		Locale.setDefault(Locale.US); //SET DEFAULT LOCALE
+		
+		Scanner sc = new Scanner(System.in);
+		int in = sc.nextInt();
+		
+		if(in >= 10){
+			System.out.println("Hello world!");		
+		}
+		
+		sc.close();
 	}
-
 }
