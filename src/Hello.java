@@ -18,6 +18,7 @@ public class Hello {
 			System.out.println("Hey Michael!"); //Added Michael Support
 			System.out.println("Hey Nick!"); //Added Nick Support
 			System.out.println("Hey Carla!"); //Added Carla Support
+			System.out.println("Hey Peter!"); //Added Peter Support
 		}
 		
 		sc.close();
