@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Exponential{
     
-    public static void main(String[] args)throws Exception{
+    public static void main(String[] args){
         Locale.setDefault(Locale.US);
         double x;
         int N;
@@ -79,8 +79,18 @@ public class Exponential{
             
             double abs = Math.abs(firsttotal-sectotal);
 
-            if(abs <= 10e-13)
+            if(abs <= 10e-13){
+		System.out.println("Betrag von |S(N)-S(N+1)|: "+abs);
+		
+		if(x < 0){
+        		firsttotal = 1.0/firsttotal;
+        		sectotal = 1.0/sectotal;
+        	}
+		
+		System.out.println("S(N="+(N-1)+", x=x): "+firsttotal);
+		System.out.println("S(N="+N+", x=x): "+sectotal);
             	break;
+            }
             
             firsttotal = 1;
             sectotal = 1;
