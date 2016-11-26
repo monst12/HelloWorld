@@ -118,7 +118,6 @@ public class Vektorrechnung{
         }
         
         System.out.println("Das Skalarprodukt der Vektoren x und y ergibt: "+(char)27+"[32m"+local+(char)27+"[0m\n");         
-
     }
 
 }
