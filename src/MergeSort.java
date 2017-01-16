@@ -1,6 +1,4 @@
-import java.util.Locale;
 import java.util.*;
-
 
 public class MergeSort {
 
@@ -8,24 +6,24 @@ public class MergeSort {
 		Locale.setDefault(Locale.US);
 		Scanner scanner = new Scanner(System.in);
 		
-		boolean cancel = false;		
-		while(!cancel){
-			System.out.println("Bitte geben Sie ein Feld an (Beispiel: 1 2 3 4 0):");
+		while(true){
+		        //Input
+			System.out.println(ConsoleColor.IN+"Bitte geben Sie ein Feld an (Beispiel: 1 2 3 4 0):");
 			
 			String input = scanner.nextLine();
 			String[] parts = input.split(" ");
 			int[] array = new int[parts.length];
 
 			for(int i = 0; i < parts.length; i++){
-				array[i] = Integer.valueOf(parts[i]);
+				array[i] = Integer.parseInt(parts[i]);
 			}
 
-			System.out.println("Ihre Eingabe lautet: "+Arrays.toString(array));
+			System.out.println(ConsoleColor.OUT+"Ihre Eingabe lautet: "+ConsoleColor.COLOR_GREEN+Arrays.toString(array)+ConsoleColor.COLOR_CLEAR);
 						
 			int[] result = mergesort(array);
-			System.out.println("Das Ergebnis lautet: "+Arrays.toString(result));
+			System.out.println(ConsoleColor.OUT+"Das Ergebnis lautet: "+ConsoleColor.COLOR_GREEN+Arrays.toString(result)+ConsoleColor.COLOR_CLEAR);
 			
-			System.out.println("Zum Abbrechen des Programms geben Sie bitte \"quit\" ein.");
+			System.out.println(ConsoleColor.IN+"Zum Abbrechen des Programms geben Sie bitte "+ConsoleColor.COLOR_RED+"\"quit\""+ConsoleColor.COLOR_CLEAR+" ein.");
 			
 			String quit = scanner.nextLine();
 			if(quit.equalsIgnoreCase("quit"))
@@ -47,17 +45,17 @@ public class MergeSort {
 			if (leftarray[indexleft] <= rightarray[indexright]) {
 				result[indexresult++] = leftarray[indexleft++];
 				
-			}else{
-				result[indexresult++] = rightarray[indexright++];
-			}		
+			}else
+			    result[indexresult++] = rightarray[indexright++];
+					
 		}
 		
-		//Auffüllen der übrigen Einträge
+		//Auffüllen der übrigen Einträge aus Teilliste 1
 		while (indexleft < leftarray.length) {
 			result[indexresult++] = leftarray[indexleft++];
 		}
 		
-		//Auffüllen der übrigen Enträge
+		//Auffüllen der übrigen Enträge aus Teilliste 2
 		while (indexright < rightarray.length) {
 			result[indexresult++] = rightarray[indexright++];
 		}
@@ -70,45 +68,23 @@ public class MergeSort {
 		if(array.length == 1)
 			return array;
 		
+		//Mitte (abgerundet) bestimmen
 		int middle = array.length/2;
 
+                //Erste Teilliste bis zur Mitte
 		int[] leftarray = new int[middle];	
 		System.arraycopy(array, 0, leftarray, 0, middle);
 		
+		//Zweite Teilliste ab der Mitte
 		int[] rightarray = new int[array.length-middle];		
 		System.arraycopy(array, middle, rightarray, 0, (array.length-middle));
 		
 		//Rekursiv
-		mergesort(leftarray);
-		mergesort(rightarray);
+		int[] re1 = mergesort(leftarray);
+		int[] re2 = mergesort(rightarray);
 		
-		array = merge(leftarray, rightarray);
+		//Vereinen der sortierten Teillisten
+		array = merge(re1, re2);
 		return array;
 	}
-	
-	
-	
-	public static void sort(int[] array)
-	{
-
-		if (array.length > 1) {
-			int mitte = (int)(array.length / 2);
-
-			int[] links = new int[mitte];
-			for (int i = 0; i <= links.length - 1; i++) {
-				links[i] = array[i];
-			}
-
-			int[] rechts = new int[array.length - mitte];
-			for (int i = mitte; i <= array.length - 1; i++) {
-				rechts[i - mitte] = array[i];
-			}
-
-			sort(links);
-			sort(rechts);
-
-			array = merge(links, rechts);
-		}
-	}
-
 }
