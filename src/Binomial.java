@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Binomial {
@@ -25,8 +24,9 @@ public class Binomial {
 	
 	private double logBinKoeffizient(){
 		double log = 1;
+		//log(a)+...+log(i) = log(a*...*i)
 		for(double i = 1; i < this.k; i++){
-			log *= ((this.n+1/i)-1);
+			log *= ((this.n+1.0/i)-1.0);
 		}
 
 		return Math.log(log);
@@ -36,29 +36,22 @@ public class Binomial {
 		if(fehler())
 			return 0;
 		
-		double result;
 		double binkoeff = this.logBinKoeffizient();	
 		System.out.println("binkoeff "+binkoeff);
 		
-		double firstmulti = this.k*Math.log(this.p);
+		//log(p^k) = k*log(p)
+		double firstmulti = (double) this.k*Math.log(this.p);
 		System.out.println("firstmulti "+firstmulti);
 		
-		double secondmulti = (this.n-this.k)*Math.log(1-this.p);
+		//log((1-p)^(n-k)) = (n-k)*log(1-p)
+		double secondmulti = (double) (this.n-this.k)*Math.log(1.0-this.p);
 		System.out.println("secondmulti "+secondmulti);
-		
-		result = Math.exp(binkoeff)*Math.exp(firstmulti)*Math.exp(secondmulti);
-		System.out.println("result1 "+result);
-		
-		//log(a)*log(b)*log(c)
-		result = Math.exp(binkoeff*firstmulti*secondmulti);
-
-		return result;
+				
+		//log(a)*log(b)*log(c) = log(a+b+c)
+		return Math.exp(binkoeff+firstmulti+secondmulti);
 	}
 	
 	public double erwartungswert(){
-		if(fehler())
-			return 0;
-		//return fehler() ? 0 : this.n*this.p;
-		return this.n*this.p;
+		return fehler() ? 0 : this.n*this.p;
 	}
 }
