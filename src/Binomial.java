@@ -24,9 +24,12 @@ public class Binomial {
 	
 	private double logBinKoeffizient(){
 		double log = 1;
+		double up = this.n+1.0;
 		//log(a)+...+log(i) = log(a*...*i)
-		for(double i = 1; i < this.k; i++){
-			log *= ((this.n+1.0/i)-1.0);
+		for(double i = 1; i <= this.k; i++){
+		        //n+1/i - 1
+			log *= ((up/i)-1.0);
+			System.out.println(log);
 		}
 
 		return Math.log(log);
@@ -48,7 +51,7 @@ public class Binomial {
 		System.out.println("secondmulti "+secondmulti);
 				
 		//log(a)*log(b)*log(c) = log(a+b+c)
-		return Math.exp(binkoeff+firstmulti+secondmulti);
+		return Math.exp(binkoeff)*Math.exp(firstmulti)*Math.exp(secondmulti);
 	}
 	
 	public double erwartungswert(){
