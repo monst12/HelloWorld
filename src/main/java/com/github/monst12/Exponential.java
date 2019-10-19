@@ -1,3 +1,5 @@
+package com.github.monst12;
+
 import java.util.*;
 
 public class Exponential{

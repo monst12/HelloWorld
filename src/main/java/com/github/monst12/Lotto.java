@@ -1,3 +1,5 @@
+package com.github.monst12;
+
 public class Lotto {
 
     //Output-Dekoration
