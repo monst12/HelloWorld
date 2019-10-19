@@ -1,3 +1,5 @@
+package com.github.monst12;
+
 import java.util.*;
 
 public class Vektorrechnung{
@@ -113,6 +115,11 @@ public class Vektorrechnung{
     private static void scalarVectors(double[] x, double[] y){
         double local = 0;
         
+        for(int i = 0; i < x.length; i++){
+        	local += x[i]*y[i];
+        }
+        
+        System.out.println("Das Skalarprodukt der Vektoren x und y ergibt: "+(char)27+"[32m"+local+(char)27+"[0m\n");         
     }
 
 }
