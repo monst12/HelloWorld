@@ -1,8 +1,8 @@
-version: 2
+version: 2.1
 jobs:
-  build:
-    docker:
-      - image: circleci/openjdk:8-jdk-node-browsers
-    steps:
-      - checkout
-      - run: echo "hello world"
+    build:
+        docker:
+            - image: circleci/node:4.8.2
+        steps:
+            - checkout
+            - run: echo "hello world"
